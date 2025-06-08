@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Онлайн-запись | Санаторий-профилакторий "Евразия"</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #005baa, #0085ca);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+        
+        .logo img {
+            height: 60px;
+            margin-right: 15px;
+        }
+        
+        nav {
+            background-color: #003366;
+            padding: 1rem 0;
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin: 0 15px;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            background-color: #005baa;
+        }
+        
+        .active {
+            background-color: #005baa;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 20px;
+        }
+        
+        .booking-container {
+            display: flex;
+            margin-bottom: 3rem;
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+        }
+        
+        .booking-form {
+            flex: 1;
+            padding: 30px;
+        }
+        
+        .booking-info {
+            flex: 1;
+            background-color: #f0f7ff;
+            padding: 30px;
+        }
+        
+        .form-title {
+            color: #005baa;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #005baa;
+        }
+        
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        
+        input:focus, select:focus, textarea:focus {
+            border-color: #005baa;
+            outline: none;
+        }
+        
+        .btn {
+            display: block;
+            width: 100%;
+            background-color: #4caf50;
+            color: white;
+            padding: 14px;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #3e8e41;
+        }
+        
+        .info-title {
+            color: #005baa;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .info-list {
+            list-style: none;
+        }
+        
+        .info-list li {
+            margin-bottom: 15px;
+            padding-left: 25px;
+            position: relative;
+        }
+        
+        .info-list li:before {
+            content: "•";
+            color: #005baa;
+            font-size: 20px;
+            position: absolute;
+            left: 0;
+            top: -2px;
+        }
+        
+        .calendar {
+            margin-top: 30px;
+        }
+        
+        .calendar-title {
+            text-align: center;
+            color: #005baa;
+            margin-bottom: 15px;
+        }
+        
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 5px;
+        }
+        
+        .calendar-day {
+            text-align: center;
+            padding: 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .calendar-day:hover {
+            background-color: #e0e0e0;
+        }
+        
+        .calendar-day.active {
+            background-color: #005baa;
+            color: white;
+        }
+        
+        .calendar-day.disabled {
+            color: #ccc;
+            cursor: not-allowed;
+        }
+        
+        .time-slots {
+            margin-top: 20px;
+        }
+        
+        .time-slots-title {
+            text-align: center;
+            color: #005baa;
+            margin-bottom: 15px;
+        }
+        
+        .time-slots-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            gap: 10px;
+        }
+        
+        .time-slot {
+            padding: 10px;
+            text-align: center;
+            background-color: #f0f7ff;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .time-slot:hover {
+            background-color: #005baa;
+            color: white;
+        }
+        
+        .time-slot.active {
+            background-color: #005baa;
+            color: white;
+        }
+        
+        .time-slot.disabled {
+            background-color: #eee;
+            color: #ccc;
+            cursor: not-allowed;
+        }
+        
+        .success-message {
+            display: none;
+            text-align: center;
+            padding: 20px;
+            background-color: #e8f5e9;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        
+        .success-icon {
+            font-size: 50px;
+            color: #4caf50;
+            margin-bottom: 15px;
+        }
+        
+        footer {
+            background-color: #003366;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 2rem;
+        }
+        
+        @media (max-width: 768px) {
+            .booking-container {
+                flex-direction: column;
+            }
+            
+            .calendar-grid {
+                grid-template-columns: repeat(7, 1fr);
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <img src="images/logo.png" alt="Логотип">
+        <div class="logo">
+            
+            <h1>Санаторий-профилакторий "Евразия" ЮУЖД</h1>
+        </div>
+        <p>Онлайн-запись на прием и консультации</p>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="index.html">Главная</a></li>
+            <li><a href="about.html">О нас</a></li>
+            <li><a href="services.html">Услуги</a></li>
+            <li><a href="prices.html">Цены</a></li>
+            <li><a href="contacts.html">Контакты</a></li>
+            <li><a href="booking.html">Онлайн-запись</a></li>
+        </ul>
+    </nav>
+    
+    <div class="container">
+        <div class="booking-container">
+            <div class="booking-form">
+                <h2 class="form-title">Форма записи на прием</h2>
+                
+                <form id="bookingForm">
+                    <div class="form-group">
+                        <label for="fullName">ФИО *</label>
+                        <input type="text" id="fullName" name="fullName" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">Телефон *</label>
+                        <input type="tel" id="phone" name="phone" required placeholder="+7 (___) ___-__-__">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="service">Услуга *</label>
+                        <select id="service" name="service" required>
+                            <option value="">-- Выберите услугу --</option>
+                            <option value="consultation">Консультация терапевта</option>
+                            <option value="diagnostics">Комплексная диагностика</option>
+                            <option value="physiotherapy">Физиотерапия</option>
+                            <option value="massage">Лечебный массаж</option>
+                            <option value="program">Программа оздоровления</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="doctor">Специалист</label>
+                        <select id="doctor" name="doctor">
+                            <option value="">-- Любой доступный --</option>
+                            <option value="ivanova">Иванова М.П. (терапевт)</option>
+                            <option value="petrov">Петров С.И. (невролог)</option>
+                            <option value="sidorova">Сидорова Е.В. (физиотерапевт)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Дата приема *</label>
+                        <div class="calendar">
+                            <div class="calendar-title">Июнь 2023</div>
+                            <div class="calendar-grid" id="calendar">
+                                <!-- Calendar will be generated by JavaScript -->
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Время приема *</label>
+                        <div class="time-slots">
+                            <div class="time-slots-title">Доступное время</div>
+                            <div class="time-slots-grid" id="timeSlots">
+                                <!-- Time slots will be generated by JavaScript -->
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="comments">Комментарий</label>
+                        <textarea id="comments" name="comments" rows="3"></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn">Записаться на прием</button>
+                </form>
+                
+                <div class="success-message" id="successMessage">
+                    <div class="success-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h3>Запись успешно оформлена!</h3>
+                    <p>Мы свяжемся с вами для подтверждения записи.</p>
+                    <p>Номер вашей заявки: <strong id="bookingNumber"></strong></p>
+                </div>
+            </div>
+            
+            <div class="booking-info">
+                <h2 class="info-title">Как записаться?</h2>
+                <ul class="info-list">
+                    <li>Заполните форму записи на этой странице</li>
+                    <li>Выберите удобную дату и время приема</li>
+                    <li>Укажите контактные данные для связи</li>
+                    <li>Нажмите кнопку "Записаться на прием"</li>
+                    <li>Дождитесь подтверждения записи по телефону или email</li>
+                </ul>
+                
+                <h2 class="info-title" style="margin-top: 30px;">Правила записи</h2>
+                <ul class="info-list">
+                    <li>Запись доступна за 14 дней до даты приема</li>
+                    <li>Отмена записи возможна не позднее чем за 24 часа</li>
+                    <li>При опоздании более чем на 15 минут прием может быть отменен</li>
+                    <li>Для работников ЮУЖД действуют льготные условия</li>
+                </ul>
+                
+                <h2 class="info-title" style="margin-top: 30px;">Контакты</h2>
+                <ul class="info-list">
+                    <li><strong>Телефон:</strong> +7 (3537) 12-34-56</li>
+                    <li><strong>Email:</strong> evrazia@yuzd.ru</li>
+                    <li><strong>Адрес:</strong> г. Орск, ул. Железнодорожная, 123</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>&copy;Санаторий-профилакторий "Евразия" ЮУЖД.</p>
+    </footer>
+
+    <script>
+        // Генерация календаря
+        function generateCalendar() {
+            const calendar = document.getElementById('calendar');
+            const daysInMonth = 30; // В июне 30 дней
+            const firstDay = 4; // 1 июня 2023 - четверг (0-Вс, 1-Пн,...,6-Сб)
+            
+            // Очистка календаря
+            calendar.innerHTML = '';
+            
+            // Добавление названий дней недели
+            const dayNames = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'];
+            dayNames.forEach(day => {
+                const dayElement = document.createElement('div');
+                dayElement.textContent = day;
+                dayElement.style.fontWeight = 'bold';
+                calendar.appendChild(dayElement);
+            });
+            
+            // Добавление пустых ячеек для дней перед первым днем месяца
+            for (let i = 0; i < firstDay; i++) {
+                const emptyElement = document.createElement('div');
+                emptyElement.classList.add('calendar-day', 'disabled');
+                calendar.appendChild(emptyElement);
+            }
+            
+            // Добавление дней месяца
+            for (let day = 1; day <= daysInMonth; day++) {
+                const dayElement = document.createElement('div');
+                dayElement.classList.add('calendar-day');
+                dayElement.textContent = day;
+                
+                // Деактивация прошедших дней
+                const currentDate = new Date();
+                const currentDay = currentDate.getDate();
+                if (day < currentDay) {
+                    dayElement.classList.add('disabled');
+                } else {
+                    // Добавление обработчика клика
+                    dayElement.addEventListener('click', function() {
+                        // Удаление активного класса у всех дней
+                        document.querySelectorAll('.calendar-day').forEach(el => {
+                            el.classList.remove('active');
+                        });
+                        
+                        // Добавление активного класса к выбранному дню
+                        this.classList.add('active');
+                        
+                        // Генерация временных слотов для выбранного дня
+                        generateTimeSlots(day);
+                    });
+                }
+                
+                calendar.appendChild(dayElement);
+            }
+        }
+        
+        // Генерация временных слотов
+        function generateTimeSlots(day) {
+            const timeSlots = document.getElementById('timeSlots');
+            timeSlots.innerHTML = '';
+            
+            // Создание утренних слотов (9:00 - 12:00)
+            for (let hour = 9; hour < 12; hour++) {
+                for (let minute = 0; minute < 60; minute += 30) {
+                    const timeSlot = document.createElement('div');
+                    timeSlot.classList.add('time-slot');
+                    
+                    // Форматирование времени
+                    const timeString = `${hour.toString().padStart(2, '0')}:${minute.toString().padStart(2, '0')}`;
+                    timeSlot.textContent = timeString;
+                    
+                    // Случайная деактивация некоторых слотов для демонстрации
+                    if (Math.random() > 0.7) {
+                        timeSlot.classList.add('disabled');
+                    } else {
+                        timeSlot.addEventListener('click', function() {
+                            // Удаление активного класса у всех слотов
+                            document.querySelectorAll('.time-slot').forEach(el => {
+                                el.classList.remove('active');
+                            });
+                            
+                            // Добавление активного класса к выбранному слоту
+                            this.classList.add('active');
+                        });
+                    }
+                    
+                    timeSlots.appendChild(timeSlot);
+                }
+            }
+            
+            // Создание дневных слотов (14:00 - 18:00)
+            for (let hour = 14; hour < 18; hour++) {
+                for (let minute = 0; minute < 60; minute += 30) {
+                    const timeSlot = document.createElement('div');
+                    timeSlot.classList.add('time-slot');
+                    
+                    // Форматирование времени
+                    const timeString = `${hour.toString().padStart(2, '0')}:${minute.toString().padStart(2, '0')}`;
+                    timeSlot.textContent = timeString;
+                    
+                    // Случайная деактивация некоторых слотов для демонстрации
+                    if (Math.random() > 0.7) {
+                        timeSlot.classList.add('disabled');
+                    } else {
+                        timeSlot.addEventListener('click', function() {
+                            // Удаление активного класса у всех слотов
+                            document.querySelectorAll('.time-slot').forEach(el => {
+                                el.classList.remove('active');
+                            });
+                            
+                            // Добавление активного класса к выбранному слоту
+                            this.classList.add('active');
+                        });
+                    }
+                    
+                    timeSlots.appendChild(timeSlot);
+                }
+            }
+        }
+        
+        // Обработка отправки формы
+        document.getElementById('bookingForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Получение значений формы
+            const fullName = document.getElementById('fullName').value;
+            const phone = document.getElementById('phone').value;
+            const service = document.getElementById('service').value;
+            
+            // Проверка обязательных полей
+            if (!fullName || !phone || !service) {
+                alert('Пожалуйста, заполните все обязательные поля (помечены *)');
+                return;
+            }
+            
+            // Проверка выбора даты и времени
+            const selectedDay = document.querySelector('.calendar-day.active');
+            const selectedTime = document.querySelector('.time-slot.active');
+            
+            if (!selectedDay || !selectedTime) {
+                alert('Пожалуйста, выберите дату и время приема');
+                return;
+            }
+            
+            // Генерация случайного номера бронирования
+            const bookingNumber = 'BK-' + Math.floor(100000 + Math.random() * 900000);
+            
+            // Отображение сообщения об успехе
+            document.getElementById('bookingNumber').textContent = bookingNumber;
+            document.getElementById('bookingForm').style.display = 'none';
+            document.getElementById('successMessage').style.display = 'block';
+            
+            
+        });
+        
+        // Маска для ввода телефона
+        document.getElementById('phone').addEventListener('input', function(e) {
+            let x = e.target.value.replace(/\D/g, '').match(/(\d{0,1})(\d{0,3})(\d{0,3})(\d{0,2})(\d{0,2})/);
+            e.target.value = '+7' + (x[2] ? ' (' + x[2] : '') + (x[3] ? ') ' + x[3] : '') + (x[4] ? '-' + x[4] : '') + (x[5] ? '-' + x[5] : '');
+        });
+        
+        // Инициализация календаря при загрузке страницы
+        window.onload = function() {
+            generateCalendar();
+        };
+    </script>
+</body>
+</html>

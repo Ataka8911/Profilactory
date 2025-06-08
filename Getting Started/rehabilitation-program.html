@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Программа "Комплексная реабилитация" | Санаторий-профилакторий "Евразия"</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #005baa, #0085ca);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+        
+        .logo img {
+            height: 60px;
+            margin-right: 15px;
+        }
+        
+        nav {
+            background-color: #003366;
+            padding: 1rem 0;
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin: 0 15px;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            background-color: #005baa;
+        }
+        
+        .active {
+            background-color: #005baa;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 20px;
+        }
+        
+        .program-header {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .program-header:after {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 150px;
+            height: 150px;
+            background: url('https://via.placeholder.com/150') no-repeat;
+            opacity: 0.1;
+        }
+        
+        .program-title {
+            color: #005baa;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .program-duration {
+            font-size: 1.2rem;
+            color: #0085ca;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .program-description {
+            max-width: 800px;
+            margin: 0 auto 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .program-highlight {
+            background-color: #e8f5e9;
+            padding: 15px;
+            border-left: 4px solid #4caf50;
+            margin: 20px 0;
+            font-size: 1.1rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .program-section {
+            background-color: white;
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+        }
+        
+        .section-title {
+            color: #003366;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f0f7ff;
+        }
+        
+        .included-list {
+            margin-left: 20px;
+        }
+        
+        .included-list li {
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 25px;
+        }
+        
+        .included-list li:before {
+            content: "✓";
+            color: #4caf50;
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+        
+        .stages {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .stage-card {
+            background-color: #f0f7ff;
+            padding: 20px;
+            border-radius: 8px;
+            border-top: 4px solid #005baa;
+        }
+        
+        .stage-number {
+            background-color: #005baa;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 10px;
+        }
+        
+        .stage-title {
+            color: #005baa;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        
+        .methods-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .method-card {
+            background-color: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 15px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .method-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .method-name {
+            color: #005baa;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+        
+        .doctor-card {
+            display: flex;
+            margin-bottom: 20px;
+            align-items: center;
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 8px;
+        }
+        
+        .doctor-photo {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 20px;
+            border: 3px solid #005baa;
+        }
+        
+        .doctor-info {
+            flex: 1;
+        }
+        
+        .doctor-name {
+            color: #005baa;
+            margin-bottom: 5px;
+        }
+        
+        .doctor-specialty {
+            font-style: italic;
+            color: #666;
+            margin-bottom: 10px;
+        }
+        
+        .results-list {
+            margin-left: 20px;
+        }
+        
+        .results-list li {
+            margin-bottom: 15px;
+            padding-left: 30px;
+            background-repeat: no-repeat;
+            background-position: left center;
+            background-size: 20px;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23005baa"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>');
+        }
+        
+        .cta-section {
+            text-align: center;
+            margin: 40px 0;
+            padding: 30px;
+            background: linear-gradient(135deg, #005baa, #0085ca);
+            border-radius: 8px;
+            color: white;
+        }
+        
+        .cta-title {
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background-color: white;
+            color: #005baa;
+            padding: 12px 25px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 15px;
+            transition: all 0.3s;
+        }
+        
+        .cta-button:hover {
+            background-color: #f0f0f0;
+            transform: translateY(-2px);
+        }
+        
+        footer {
+            background-color: #003366;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 2rem;
+        }
+        
+        .contact-info {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin: 1rem 0;
+        }
+        
+        .contact-item {
+            margin: 10px 20px;
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            color: #005baa;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            nav ul li {
+                margin: 5px 0;
+            }
+            
+            .doctor-card {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .doctor-photo {
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="images/logo.png" alt="Логотип">
+        <div class="logo">
+            
+            <h1>Санаторий-профилакторий "Евразия" ЮУЖД</h1>
+        </div>
+        <p>Официальный сайт лечебно-профилактического учреждения</p>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="index.html">Главная</a></li>
+            <li><a href="about.html">О нас</a></li>
+            <li><a href="services.html">Услуги</a></li>
+            <li><a href="prices.html">Цены</a></li>
+            <li><a href="contacts.html">Контакты</a></li>
+            <li><a href="booking.html">Онлайн-запись</a></li>
+        </ul>
+    </nav>
+    
+    <div class="container">
+        <div class="program-header">
+            <h2 class="program-title">Программа "Комплексная реабилитация"</h2>
+            <div class="program-duration">Продолжительность: 21 день</div>
+            <div class="program-description">
+                Наиболее полная программа восстановления, сочетающая современные медицинские технологии 
+                и традиционные методы санаторно-курортного лечения. Разработана для пациентов, 
+                нуждающихся в полноценной реабилитации после заболеваний, травм или операций.
+            </div>
+            <div class="program-highlight">
+                Для работников ЮУЖД, получивших производственные травмы, программа предоставляется 
+                со скидкой 20% по корпоративной программе реабилитации.
+            </div>
+        </div>
+        
+        <div class="program-section">
+            <h3 class="section-title">Этапы реабилитации</h3>
+            <div class="stages">
+                <div class="stage-card">
+                    <div class="stage-number">1</div>
+                    <div class="stage-title">Диагностический этап</div>
+                    <p>Комплексное обследование организма, выявление основных проблем и составление индивидуальной программы реабилитации.</p>
+                </div>
+                <div class="stage-card">
+                    <div class="stage-number">2</div>
+                    <div class="stage-title">Основной лечебный этап</div>
+                    <p>Интенсивное лечение с использованием физиотерапевтических, медикаментозных и других методов воздействия.</p>
+                </div>
+                <div class="stage-card">
+                    <div class="stage-number">3</div>
+                    <div class="stage-title">Восстановительный этап</div>
+                    <p>Закрепление результатов лечения, обучение методам самоконтроля и поддержания здоровья.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="program-section">
+            <h3 class="section-title">Применяемые методы лечения</h3>
+            <div class="methods-grid">
+                <div class="method-card">
+                    <div class="method-name">Физиотерапия</div>
+                    <p>Электрофорез, магнитотерапия, лазеротерапия, ультразвуковая терапия, СМТ-терапия</p>
+                </div>
+                <div class="method-card">
+                    <div class="method-name">Механотерапия</div>
+                    <p>Занятия на специализированных тренажерах для восстановления двигательных функций</p>
+                </div>
+                <div class="method-card">
+                    <div class="method-name">Кинезиотерапия</div>
+                    <p>Система активных и пассивных движений для восстановления мышечного корсета</p>
+                </div>
+                <div class="method-card">
+                    <div class="method-name">Бальнеотерапия</div>
+                    <p>Лечебные ванны (жемчужные, хвойные, скипидарные) и души (циркулярный, шотландский)</p>
+                </div>
+                <div class="method-card">
+                    <div class="method-name">Массаж</div>
+                    <p>Классический, сегментарный, точечный, аппаратный массаж по показаниям</p>
+                </div>
+                <div class="method-card">
+                    <div class="method-name">Психотерапия</div>
+                    <p>Индивидуальные и групповые занятия для восстановления психоэмоционального состояния</p>
+                </div>
+                <div class="method-card">
+                    <div class="method-name">Диетотерапия</div>
+                    <p>Индивидуально подобранное питание с учетом состояния здоровья и нагрузок</p>
+                </div>
+                <div class="method-card">
+                    <div class="method-name">Эрготерапия</div>
+                    <p>Восстановление бытовых навыков и профессиональной деятельности</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="program-section">
+            <h3 class="section-title">Ожидаемые результаты</h3>
+            <ul class="results-list">
+                <li>Восстановление утраченных функций организма после заболеваний и травм</li>
+                <li>Уменьшение или полное устранение болевого синдрома</li>
+                <li>Улучшение подвижности суставов и позвоночника</li>
+                <li>Нормализация работы сердечно-сосудистой и дыхательной систем</li>
+                <li>Восстановление мышечного тонуса и силы</li>
+                <li>Улучшение психоэмоционального состояния и сна</li>
+                <li>Обучение методам самоконтроля и поддержания здоровья</li>
+            </ul>
+        </div>
+        
+        <div class="program-section">
+            <h3 class="section-title">Показания к программе</h3>
+            <ul class="included-list">
+                <li>Реабилитация после операций на опорно-двигательном аппарате</li>
+                <li>Состояния после травм (переломы, вывихи, растяжения)</li>
+                <li>Реабилитация после инсульта и черепно-мозговых травм</li>
+                <li>Заболевания суставов (артрозы, артриты) в стадии ремиссии</li>
+                <li>Остеохондроз позвоночника с неврологическими проявлениями</li>
+                <li>Реабилитация после инфаркта миокарда (не ранее 3 месяцев)</li>
+                <li>Хронические заболевания органов дыхания вне обострения</li>
+                <li>Профессиональные заболевания работников железнодорожного транспорта</li>
+            </ul>
+            
+            <h3 class="section-title" style="margin-top: 30px;">Противопоказания</h3>
+            <ul class="included-list" style="list-style-type: none;">
+                <li style="padding-left: 0;">✓ Острые инфекционные заболевания</li>
+                <li style="padding-left: 0;">✓ Обострения хронических болезней</li>
+                <li style="padding-left: 0;">✓ Декомпенсированные состояния органов и систем</li>
+                <li style="padding-left: 0;">✓ Психические заболевания в стадии обострения</li>
+                <li style="padding-left: 0;">✓ Злокачественные новообразования</li>
+            </ul>
+        </div>
+        
+        <a href="index.html" class="back-link">← Вернуться на главную</a>
+    </div>
+    
+    <footer>
+        <div class="contact-info">
+            <div class="contact-item">
+                <h3>Адрес</h3>
+                <p>г. Орск, ул. Железнодорожная, 123</p>
+            </div>
+            <div class="contact-item">
+                <h3>Телефон</h3>
+                <p>+7 (3537) 12-34-56</p>
+            </div>
+            <div class="contact-item">
+                <h3>Режим работы</h3>
+                <p>Пн-Пт: 8:00 - 20:00</p>
+                <p>Сб-Вс: 9:00 - 18:00</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
