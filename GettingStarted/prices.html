@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Цены | Санаторий-профилакторий "Евразия"</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #005baa, #0085ca);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+        
+        .logo img {
+            height: 60px;
+            margin-right: 15px;
+        }
+        
+        nav {
+            background-color: #003366;
+            padding: 1rem 0;
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin: 0 15px;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            background-color: #005baa;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 20px;
+        }
+        
+        .page-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #005baa;
+        }
+        
+        .price-section {
+            background-color: white;
+            border-radius: 8px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+        }
+        
+        .price-category {
+            margin-bottom: 20px;
+        }
+        
+        .category-title {
+            background-color: #f0f7ff;
+            padding: 10px 15px;
+            font-size: 1.2rem;
+            color: #003366;
+            border-left: 4px solid #005baa;
+            margin-bottom: 15px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        th {
+            background-color: #f0f7ff;
+            color: #003366;
+        }
+        
+        tr:hover {
+            background-color: #f9f9f9;
+        }
+        
+        .price {
+            color: #0085ca;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+        
+        .notice {
+            background-color: #fff8e6;
+            padding: 15px;
+            border-left: 4px solid #ffc107;
+            margin: 20px 0;
+            font-size: 0.9rem;
+        }
+        
+        .discount-badge {
+            background-color: #4caf50;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            margin-left: 10px;
+        }
+        
+        footer {
+            background-color: #003366;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 2rem;
+        }
+        
+        .contact-info {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin: 1rem 0;
+        }
+        
+        .contact-item {
+            margin: 10px 20px;
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            color: #005baa;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            nav ul li {
+                margin: 5px 0;
+            }
+            
+            th, td {
+                padding: 8px 10px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="images/logo.png" alt="Логотип">
+        <div class="logo">
+            
+            <h1>Санаторий-профилакторий "Евразия" ЮУЖД</h1>
+        </div>
+        <p>Официальный сайт лечебно-профилактического учреждения</p>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="index.html">Главная</a></li>
+            <li><a href="about.html">О нас</a></li>
+            <li><a href="services.html">Услуги</a></li>
+            <li><a href="prices.html">Цены</a></li>
+            <li><a href="contacts.html">Контакты</a></li>
+            <li><a href="booking.html">Онлайн-запись</a></li>
+        </ul>
+    </nav>
+    
+    <div class="container">
+        <h2 class="page-title">Прайс-лист на медицинские услуги</h2>
+        
+        <div class="notice">
+            <p>Для работников ЮУЖД и членов их семей действуют специальные льготные цены. Подробности уточняйте у администраторов.</p>
+        </div>
+        
+        <div class="price-section">
+            <div class="price-category">
+                <h3 class="category-title">Диагностические исследования</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Наименование услуги</th>
+                            <th>Описание</th>
+                            <th>Цена</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Комплексное обследование</td>
+                            <td>Базовый пакет анализов и консультаций</td>
+                            <td class="price">3 500 руб.</td>
+                        </tr>
+                        <tr>
+                            <td>ЭКГ с расшифровкой</td>
+                            <td>Электрокардиограмма с заключением кардиолога</td>
+                            <td class="price">1 200 руб.</td>
+                        </tr>
+                        <tr>
+                            <td>УЗИ брюшной полости</td>
+                            <td>Исследование органов брюшной полости</td>
+                            <td class="price">1 800 руб.</td>
+                        </tr>
+                        <tr>
+                            <td>Спирометрия</td>
+                            <td>Исследование функции внешнего дыхания</td>
+                            <td class="price">1 500 руб.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="price-category">
+                <h3 class="category-title">Физиотерапевтические процедуры</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Наименование услуги</th>
+                            <th>Длительность</th>
+                            <th>Цена за сеанс</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Электрофорез</td>
+                            <td>15-20 мин</td>
+                            <td class="price">600 руб.</td>
+                        </tr>
+                        <tr>
+                            <td>Магнитотерапия</td>
+                            <td>20 мин</td>
+                            <td class="price">500 руб.</td>
+                        </tr>
+                        <tr>
+                            <td>Лазерная терапия</td>
+                            <td>10-15 мин</td>
+                            <td class="price">700 руб.</td>
+                            </tr>
+                        <tr>
+                            <td>Ультразвуковая терапия</td>
+                            <td>10-15 мин</td>
+                            <td class="price">550 руб.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <div class="price-section">
+            <div class="price-category">
+                <h3 class="category-title">Лечебный массаж</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Вид массажа</th>
+                            <th>Продолжительность</th>
+                            <th>Цена</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Общий массаж</td>
+                            <td>60 мин</td>
+                            <td class="price">1 500 руб.</td>
+                        </tr>
+                        <tr>
+                            <td>Массаж спины</td>
+                            <td>30 мин</td>
+                            <td class="price">900 руб.</td>
+                        </tr>
+                        <tr>
+                            <td>Массаж шейно-воротниковой зоны</td>
+                            <td>30 мин</td>
+                            <td class="price">800 руб.</td>
+                        </tr>
+                        <tr>
+                            <td>Лимфодренажный массаж</td>
+                            <td>45 мин</td>
+                            <td class="price">1 200 руб.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="price-category">
+                <h3 class="category-title">Программы оздоровления</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Программа</th>
+                            <th>Срок</th>
+                            <th>Цена</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>"Базовое оздоровление" <span class="discount-badge">-10% для РЖД</span></td>
+                            <td>7 дней</td>
+                            <td class="price">12 500 руб.</td>
+                        </tr>
+                        <tr>
+                            <td>"Здоровый позвоночник" <span class="discount-badge">-15% для РЖД</span></td>
+                            <td>14 дней</td>
+                            <td class="price">25 000 руб.</td>
+                        </tr>
+                        <tr>
+                            <td>"Комплексная реабилитация"</td>
+                            <td>21 день</td>
+                            <td class="price">35 000 руб.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <div class="notice">
+            <p>Цены указаны для ознакомления и могут меняться. Актуальные цены уточняйте при записи. Возможны противопоказания, необходима консультация специалиста.</p>
+        </div>
+        
+        <a href="index.html" class="back-link">← Вернуться на главную</a>
+    </div>
+    
+    <footer>
+        <div class="contact-info">
+            <div class="contact-item">
+                <h3>Адрес</h3>
+                <p>г. Орск, ул. Железнодорожная, 123</p>
+            </div>
+            <div class="contact-item">
+                <h3>Телефон</h3>
+                <p>+7 (3537) 12-34-56</p>
+            </div>
+            <div class="contact-item">
+                <h3>Режим работы</h3>
+                <p>Пн-Пт: 8:00 - 20:00</p>
+                <p>Сб-Вс: 9:00 - 18:00</p>
+                </div>
+        </div>
+    </footer>
+</body>
+</html>
