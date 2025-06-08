@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Программа "Базовое оздоровление" | Санаторий-профилакторий "Евразия"</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #005baa, #0085ca);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+        
+        .logo img {
+            height: 60px;
+            margin-right: 15px;
+        }
+        
+        nav {
+            background-color: #003366;
+            padding: 1rem 0;
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin: 0 15px;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            background-color: #005baa;
+        }
+        
+        .active {
+            background-color: #005baa;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 20px;
+        }
+        
+        .program-header {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+        }
+        
+        .program-title {
+            color: #005baa;
+            margin-bottom: 10px;
+        }
+        
+        .program-duration {
+            font-size: 1.2rem;
+            color: #0085ca;
+            margin-bottom: 15px;
+        }
+        
+        .program-description {
+            max-width: 800px;
+            margin: 0 auto 20px;
+        }
+        
+        .program-highlight {
+            background-color: #fff8e6;
+            padding: 15px;
+            border-left: 4px solid #ffc107;
+            margin: 20px 0;
+            font-size: 1.1rem;
+        }
+        
+        .program-section {
+            background-color: white;
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+        }
+        
+        .section-title {
+            color: #003366;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f0f7ff;
+        }
+        
+        .included-list {
+            margin-left: 20px;
+        }
+        
+        .included-list li {
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 25px;
+        }
+        
+        .included-list li:before {
+            content: "✓";
+            color: #4caf50;
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+        
+        .schedule-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        .schedule-table th, .schedule-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .schedule-table th {
+            background-color: #f0f7ff;
+            color: #003366;
+        }
+        
+        .schedule-table tr:hover {
+            background-color: #f9f9f9;
+        }
+        
+        .day-separator {
+            background-color: #f0f7ff;
+            font-weight: bold;
+        }
+        
+        .doctor-card {
+            display: flex;
+            margin-bottom: 20px;
+            align-items: center;
+        }
+        
+        .doctor-photo {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 20px;
+            border: 3px solid #005baa;
+        }
+        
+        .doctor-info {
+            flex: 1;
+        }
+        
+        .doctor-name {
+            color: #005baa;
+            margin-bottom: 5px;
+        }
+        
+        .doctor-specialty {
+            font-style: italic;
+            color: #666;
+            margin-bottom: 10px;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background-color: #4caf50;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 20px;
+            transition: background-color 0.3s;
+        }
+        
+        .cta-button:hover {
+            background-color: #3e8e41;
+        }
+        
+        footer {
+            background-color: #003366;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 2rem;
+        }
+        
+        .contact-info {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin: 1rem 0;
+        }
+        
+        .contact-item {
+            margin: 10px 20px;
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            color: #005baa;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            nav ul li {
+                margin: 5px 0;
+            }
+            
+            .doctor-card {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .doctor-photo {
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="images/logo.png" alt="Логотип">
+        <div class="logo">
+            
+            <h1>Санаторий-профилакторий "Евразия" ЮУЖД</h1>
+        </div>
+        <p>Официальный сайт лечебно-профилактического учреждения</p>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="index.html">Главная</a></li>
+            <li><a href="about.html">О нас</a></li>
+            <li><a href="services.html">Услуги</a></li>
+            <li><a href="prices.html">Цены</a></li>
+            <li><a href="contacts.html">Контакты</a></li>
+            <li><a href="booking.html">Онлайн-запись</a></li>
+        </ul>
+    </nav>
+    
+    <div class="container">
+        <div class="program-header">
+            <h2 class="program-title">Программа оздоровления "Базовое оздоровление"</h2>
+            <div class="program-duration">Продолжительность: 7 дней</div>
+            <div class="program-description">
+                Комплексная программа, направленная на общее укрепление организма, восстановление жизненных сил и профилактику заболеваний. 
+                Идеально подходит для первого знакомства с возможностями нашего профилактория.
+            </div>
+            <div class="program-highlight">
+                Для работников ЮУЖД и членов их семей действует скидка 10% на данную программу.
+            </div>
+        </div>
+        
+        <div class="program-section">
+            <h3 class="section-title">Что входит в программу</h3>
+            <ul class="included-list">
+                <li>Первичный осмотр терапевта с составлением индивидуального плана</li>
+                <li>Комплекс лабораторных исследований (общий анализ крови, мочи, биохимия крови)</li>
+                <li>Электрокардиограмма (ЭКГ) с консультацией кардиолога</li>
+                <li>5 сеансов лечебного массажа (общего или зонального)</li>
+                <li>7 сеансов физиотерапии (на выбор: электрофорез, магнитотерапия, лазеротерапия)</li>
+                <li>Ежедневные занятия лечебной физкультурой</li>
+                <li>3 сеанса ароматерапии или фитотерапии</li>
+                <li>Консультация диетолога с подбором индивидуального рациона</li>
+                <li>Заключительный осмотр врача с рекомендациями</li>
+            </ul>
+        </div>
+        
+        <div class="program-section">
+            <h3 class="section-title">Примерный распорядок дня</h3>
+            <table class="schedule-table">
+                <thead>
+                    <tr>
+                        <th>Время</th>
+                        <th>Мероприятие</th>
+                        <th>Место проведения</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="day-separator">
+                        <td colspan="3">День 1 (Заезд)</td>
+                    </tr>
+                    <tr>
+                        <td>09:00-10:00</td>
+                        <td>Заселение, размещение</td>
+                        <td>Ресепшен</td>
+                    </tr>
+                    <tr>
+                        <td>10:30-11:30</td>
+                        <td>Первичный осмотр терапевта</td>
+                        <td>Кабинет 201</td>
+                    </tr>
+                    <tr>
+                        <td>12:00-13:00</td>
+                        <td>Обед</td>
+                        <td>Столовая</td>
+                    </tr>
+                    <tr>
+                        <td>14:00-15:30</td>
+                        <td>Комплексное обследование</td>
+                        <td>Диагностический центр</td>
+                    </tr>
+                    
+                    <tr class="day-separator">
+                        <td colspan="3">День 2</td>
+                    </tr>
+                    <tr>
+                        <td>08:00-09:00</td>
+                        <td>Завтрак</td>
+                        <td>Столовая</td>
+                    </tr>
+                    <tr>
+                        <td>09:30-10:15</td>
+                        <td>Лечебная физкультура</td>
+                        <td>Зал ЛФК</td>
+                    </tr>
+                    <tr>
+                        <td>11:00-11:45</td>
+                        <td>Электрофорез</td>
+                        <td>Физиотерапевтический кабинет</td>
+                    </tr>
+                    <tr>
+                        <td>12:30-13:30</td>
+                        <td>Обед</td>
+                        <td>Столовая</td>
+                    </tr>
+                    <tr>
+                        <td>15:00-16:00</td>
+                        <td>Лечебный массаж</td>
+                        <td>Массажный кабинет</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p><em>Полное расписание выдается при заселении и может корректироваться по медицинским показаниям.</em></p>
+        </div>
+        
+        
+        <div class="program-section">
+            <h3 class="section-title">Показания для программы</h3>
+            <ul class="included-list">
+                <li>Хроническая усталость, стресс</li>
+                <li>Профилактика сезонных заболеваний</li>
+                <li>Реабилитация после перенесенных ОРВИ</li>
+                <li>Начальные стадии артериальной гипертензии</li>
+                <li>Остеохондроз позвоночника 1-2 степени</li>
+                <li>Общее ослабление иммунитета</li>
+            </ul>
+            
+            <h3 class="section-title" style="margin-top: 30px;">Противопоказания</h3>
+            <ul class="included-list" style="list-style-type: none;">
+                <li style="padding-left: 0;">✓ Острые инфекционные заболевания</li>
+                <li style="padding-left: 0;">✓ Обострение хронических болезней</li>
+                <li style="padding-left: 0;">✓ Онкологические заболевания</li>
+                <li style="padding-left: 0;">✓ Беременность</li>
+            </ul>
+        </div>
+        
+        
+        <a href="index.html" class="back-link">← Вернуться на главную</a>
+    </div>
+    
+    <footer>
+        <div class="contact-info">
+            <div class="contact-item">
+                <h3>Адрес</h3>
+                <p>г. Орск, ул. Железнодорожная, 123</p>
+            </div>
+            <div class="contact-item">
+                <h3>Телефон</h3>
+                <p>+7 (3537) 12-34-56</p>
+            </div>
+            <div class="contact-item">
+                <h3>Режим работы</h3>
+                <p>Пн-Пт: 8:00 - 20:00</p>
+                <p>Сб-Вс: 9:00 - 18:00</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

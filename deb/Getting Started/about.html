@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>О нас | Санаторий-профилакторий "Евразия"</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #005baa, #0085ca);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+        
+        .logo img {
+            height: 60px;
+            margin-right: 15px;
+        }
+        
+        nav {
+            background-color: #003366;
+            padding: 1rem 0;
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin: 0 15px;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            background-color: #005baa;
+        }
+        
+        .active {
+            background-color: #005baa;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 20px;
+        }
+        
+        .about-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .about-title {
+            color: #005baa;
+            margin-bottom: 1rem;
+        }
+        
+        .history-section {
+            display: flex;
+            align-items: center;
+            margin: 3rem 0;
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+        }
+        
+        .history-text {
+            flex: 1;
+            padding: 30px;
+        }
+        
+        .history-image {
+            flex: 1;
+            min-height: 400px;
+            background: url('https://via.placeholder.com/600x400') center/cover;
+        }
+        
+        .mission-section {
+            background-color: #f0f7ff;
+            padding: 40px;
+            border-radius: 8px;
+            margin: 3rem 0;
+        }
+        
+        .mission-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 2rem;
+        }
+        
+        .mission-card {
+            background-color: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        
+        .mission-title {
+            color: #005baa;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .mission-icon {
+            margin-right: 10px;
+            color: #0085ca;
+        }
+        
+        .numbers-section {
+            margin: 3rem 0;
+            text-align: center;
+        }
+        
+        .numbers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-top: 2rem;
+        }
+        
+        .number-card {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        
+        .number {
+            font-size: 2.5rem;
+            color: #005baa;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .team-section {
+            margin: 3rem 0;
+        }
+        
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 2rem;
+        }
+        
+        .team-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        
+        .team-photo {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+        
+        .team-info {
+            padding: 20px;
+        }
+        
+        .team-name {
+            color: #005baa;
+            margin-bottom: 5px;
+        }
+        
+        .team-position {
+            color: #666;
+            font-style: italic;
+            margin-bottom: 15px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: #005baa;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 20px;
+            transition: background-color 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #003366;
+        }
+        
+        footer {
+            background-color: #003366;
+            color: white;
+            text-align: center;
+            padding: 3rem 0;
+            margin-top: 2rem;
+        }
+        
+        @media (max-width: 768px) {
+            .history-section {
+                flex-direction: column;
+            }
+            
+            .history-image {
+                width: 100%;
+                min-height: 300px;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <img src="images/logo.png" alt="Логотип">
+        <div class="logo">
+            
+            <h1>Санаторий-профилакторий "Евразия" ЮУЖД</h1>
+        </div>
+        <p>Официальный сайт лечебно-профилактического учреждения</p>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="index.html">Главная</a></li>
+            <li><a href="about.html">О нас</a></li>
+            <li><a href="services.html">Услуги</a></li>
+            <li><a href="prices.html">Цены</a></li>
+            <li><a href="contacts.html">Контакты</a></li>
+            <li><a href="booking.html">Онлайн-запись</a></li>
+        </ul>
+    </nav>
+    
+    <div class="container">
+        <div class="about-header">
+            <h2 class="about-title">О санатории-профилактории "Евразия"</h2>
+            <p>Учреждение с богатой историей и современным подходом к лечению и профилактике</p>
+        </div>
+        
+        <section class="history-section">
+            <div class="history-text">
+                <h3>Наша история</h3>
+                <p>Санаторий-профилакторий "Евразия" был основан в 1985 году как ведомственное учреждение Южно-Уральской железной дороги для оздоровления работников железнодорожного транспорта.</p>
+                <p>За почти 40 лет работы мы прошли путь от небольшого профилактория до современного лечебно-профилактического комплекса, сохраняя при этом традиции внимательного отношения к каждому пациенту.</p>
+                <p>В 2015 году была проведена полная реконструкция здания и обновление медицинского оборудования, что позволило нам предлагать услуги на уровне современных стандартов.</p>
+            </div>
+            <div class="history-image"></div>
+        </section>
+        
+        <section class="mission-section">
+            <h3>Наша миссия и ценности</h3>
+            <p>Мы стремимся обеспечить качественное медицинское обслуживание и комфортные условия для восстановления здоровья работников железнодорожной отрасли и их семей.</p>
+            
+            <div class="mission-cards">
+                <div class="mission-card">
+                    <h4 class="mission-title"><i class="fas fa-heart mission-icon"></i> Забота о здоровье</h4>
+                    <p>Главный приоритет - здоровье и благополучие наших пациентов. Мы используем только проверенные и эффективные методы лечения.</p>
+                </div>
+                
+                <div class="mission-card">
+                    <h4 class="mission-title"><i class="fas fa-users mission-icon"></i> Индивидуальный подход</h4>
+                    <p>Для каждого пациента разрабатывается персональная программа оздоровления с учетом состояния здоровья и индивидуальных особенностей.</p>
+                </div>
+                
+                <div class="mission-card">
+                    <h4 class="mission-title"><i class="fas fa-chart-line mission-icon"></i> Постоянное развитие</h4>
+                    <p>Мы регулярно обновляем оборудование и внедряем новые методики, чтобы предлагать нашим пациентам лучшие решения.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="numbers-section">
+            <h3>"Евразия" в цифрах</h3>
+            <p>Факты о нашей работе и достижениях</p>
+            
+            <div class="numbers-grid">
+                <div class="number-card">
+                    <div class="number">35+</div>
+                    <p>Лет успешной работы</p>
+                </div>
+                
+                <div class="number-card">
+                    <div class="number">15</div>
+                    <p>Высококвалифицированных специалистов</p>
+                </div>
+                
+                <div class="number-card">
+                    <div class="number">500+</div>
+                    <p>Пациентов ежегодно</p>
+                </div>
+                
+                <div class="number-card">
+                    <div class="number">20+</div>
+                    <p>Видов лечебных процедур</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="team-section">
+            <h3>Наша команда</h3>
+            <p>Профессионалы с большим опытом работы</p>
+            
+            <div class="team-grid">
+                <div class="team-card">
+                    <div class="team-info">
+                        <h4 class="team-name">Иванова Мария Петровна</h4>
+                        <div class="team-position">Главный врач, терапевт</div>
+                        <p>Стаж работы: 25 лет</p>
+                    </div>
+                </div>
+                
+                <div class="team-card">
+                    <div class="team-info">
+                        <h4 class="team-name">Петров Сергей Иванович</h4>
+                        <div class="team-position">Врач-невролог</div>
+                        <p>Стаж работы: 18 лет</p>
+                    </div>
+                </div>
+                
+                <div class="team-card">
+                    <div class="team-info">
+                        <h4 class="team-name">Сидорова Елена Владимировна</h4>
+                        <div class="team-position">Врач-физиотерапевт</div>
+                        <p>Стаж работы: 15 лет</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <div style="text-align: center; margin: 40px 0;">
+            <a href="contacts.html" class="btn">Связаться с нами</a>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="logo">
+            <img src="https://via.placeholder.com/60" alt="Логотип">
+            <h2>Санаторий-профилакторий "Евразия" ЮУЖД</h2>
+        </div>
+    </footer>
+</body>
+</html>
